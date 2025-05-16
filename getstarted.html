@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started with TMS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/getstarted.css">
+    <style>
+        .option-btn.selected {
+            background-color: green !important;
+            color: white !important;
+            border: 1px solid #004d00;
+        }
+    </style>      
+</head>
+<body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">
+            <img src="images/TMS logo shrunk.png" alt="logo"/>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <h1>Get Started with TMS</h1>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="name">Name: <span style="color: red;">*</span></label>
+                <input type="text" id="name" name="name" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email: <span style="color: red;">*</span></label>
+                <input type="email" id="email" name="email" placeholder="Your Company Email">
+            </div>
+            <div class="form-group">
+                <label for="company">Company name: <span style="color: red;">*</span></label>
+                <input type="text" id="company" name="company" placeholder="Your Company Name">
+            </div>
+            <div class="form-group">
+                <label for="website">Website: <span style="color: red;">*</span></label>
+                <input type="url" id="website" name="website" placeholder="Your Company Website">
+            </div>
+            <div class="form-group">
+                <label for="devices">Number of devices: <span style="color: red;">*</span></label>
+                <input type="number" id="corporate-devices" name="devices" placeholder="Corporate-Owned">
+                <input type="number" id="byod-devices" name="devices" placeholder="How Many BYOD Devices?">
+            </div>
+            <div class="form-group">
+                <label>What is your preferred mobile platform? <span style="color: red;">*</span></label>
+                <div>
+                    <button type="button" class="option-btn" onclick="selectOption(this, 'Android')">iOS</button>
+                    <button type="button" class="option-btn" onclick="selectOption(this, 'iOS')">Android</button>
+                </div>
+                <input type="hidden" id="platform" name="platform" required>
+            </div>
+            <div class="form-group">
+                <label>Are you concerned about on-device security? <span style="color: red;">*</span></label>
+                <div>
+                    <button type="button" class="option-btn security-btn" onclick="selectGroupOption(this, 'Yes very!', 'security')">Yes very!</button>
+                    <button type="button" class="option-btn security-btn" onclick="selectGroupOption(this, 'Not really', 'security')">Not really</button>
+                    <button type="button" class="option-btn security-btn" onclick="selectGroupOption(this, 'Tell me more', 'security')">Tell me more</button>
+                </div>
+                <input type="hidden" id="security" name="security" required>
+            </div>
+                <div class="form-group">
+                    <label>Do you have an on-device real-time backup and recovery solution in place? <span style="color: red;">*</span></label>
+                    <div>
+                        <button type="button" class="option-btn backup-btn" onclick="selectGroupOption(this, 'M365 or Google Workspace', 'dataProtection')">I'm backed up through M365 or Google Workspace</button>
+                        <button type="button" class="option-btn backup-btn" onclick="selectGroupOption(this, 'I don\'t know', 'dataProtection')">I don't know</button>
+                        <button type="button" class="option-btn backup-btn" onclick="selectGroupOption(this, 'Tell me more', 'dataProtection')">Tell me more</button>
+                    </div>
+                    <input type="hidden" id="dataProtection" name="dataProtection" required>
+                </div>
+                <div class="form-group">
+                    <label>When would you like to get started? <span style="color: red;">*</span></label>
+                    <div>
+                        <button type="button" class="option-btn whenGetstarted-btn" onclick="selectGroupOption(this, 'I'm Ready Now', 'whenGetstarted')">I'm ready now</button>
+                        <button type="button" class="option-btn whenGetstarted-btn" onclick="selectGroupOption(this, 'Within 30 days', 'whenGetstarted')">Within 30 days</button>
+                        <button type="button" class="option-btn whenGetstarted-btn" onclick="selectGroupOption(this, 'Very soon', 'whenGetstarted')">Very soon</button>
+                    </div>
+                    <input type="hidden" id="whenGetstarted" name="whenGetstarted" required>
+                    <div class="form-group">
+                        <label for="message">More Details...</label>
+                        <textarea id="message" name="message" placeholder="Please share any additional details about your fleet of mobile devices"></textarea> 
+                    </div>
+                    <div class="form-group">
+                       <button type="submit" class="btn">Contact me ASAP!</button>
+                    </div>
+            </div>
+        </form>
+    </div>
+                
+
+  <script src="js/main.js"></script>
+
+  <script>
+    function selectOption(button, value) {
+      const buttons = document.querySelectorAll('.option-btn');
+      buttons.forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+      document.getElementById('platform').value = value;
+    }
+  
+    function selectGroupOption(button, value, fieldId) {
+      // Remove .selected from all buttons in the same group
+      const groupClass = button.classList[1]; // assumes the 2nd class is unique per group
+      document.querySelectorAll('.' + groupClass).forEach(btn => btn.classList.remove('selected'));
+  
+      // Mark selected and set hidden input
+      button.classList.add('selected');
+      document.getElementById(fieldId).value = value;
+    }
+</script>
+</body>
+</html>

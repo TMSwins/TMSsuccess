@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blank Form Page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/support-request.css">
+    <style>
+        .option-btn.selected {
+            background-color: green !important;
+            color: white !important;
+            border: 1px solid #004d00;
+        }
+    </style>      
+</head>
+<body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">
+            <img src="images/TMS logo shrunk.png" alt="logo" />
+          </a>
+        </div>
+    
+        <div class="main-menu">
+          <ul>
+            <li>
+              <a href="index.html">Home</a>
+            </li>
+            <li>
+              <a href="#">About TMS</a>
+            </li>
+            <li>
+              <a href="#">Pricing</a>
+            </li>
+            <li class="active">
+              <a href="form.html">Sign Up</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <h1>TMS Support Request</h1>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="support-date">Today's date: <span style="color: red;">*</span></label>
+                <input type="date" id="support-date" name="support-date" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Name: <span style="color: red;">*</span></label>
+                <input type="text" id="name" name="name" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email: <span style="color: red;">*</span></label>
+                <input type="email" id="email" name="email" placeholder="Your Company Email">
+            </div>
+            <div class="form-group">
+                <label for="company">Company name: <span style="color: red;">*</span></label>
+                <input type="text" id="company" name="company" placeholder="Your Company Name">
+            </div>
+                <div class="form-group">
+                <label for="support-type">Type of support needed: <span style="color: red;">*</span></label>
+                <select id="support-type" name="support-type" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="technical">Technical support</option>
+                    <option value="billing">Device request</option>
+                    <option value="general">Lost device</option>
+                    <option value="general">Other</option>
+                </select>
+            </div>
+                    <div class="form-group">
+                        <label for="message">More details</label>
+                        <textarea id="message" name="message" placeholder="Please share any additional details"></textarea> 
+                    </div>
+                    <div class="form-group">
+                       <button type="submit" class="btn">Submit</button>
+                    </div>
+            </div>
+        </form>
+    </div>
+
+  <script src="js/main.js"></script>
+
+  <script>
+    function selectOption(button, value) {
+      const buttons = document.querySelectorAll('.option-btn');
+      buttons.forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+      document.getElementById('platform').value = value;
+    }
+  
+    function selectGroupOption(button, value, fieldId) {
+      // Remove .selected from all buttons in the same group
+      const groupClass = button.classList[1]; // assumes the 2nd class is unique per group
+      document.querySelectorAll('.' + groupClass).forEach(btn => btn.classList.remove('selected'));
+  
+      // Mark selected and set hidden input
+      button.classList.add('selected');
+      document.getElementById(fieldId).value = value;
+    }
+</script>
+</body>
+</html>
